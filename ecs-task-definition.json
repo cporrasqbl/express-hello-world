@@ -23,7 +23,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "745281650013.dkr.ecr.us-east-2.amazonaws.com/nodejsapprepo:0209fdc4c58eb12f7450fb35060781ab28f834f4",
+      "image": "745281650013.dkr.ecr.us-east-2.amazonaws.com/nodejsapprepo:93f02d30076220b6cf2db03cba35124b74313ec7",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -50,7 +50,7 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/nodejs_ec2:2",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/nodejs_ec2:4",
   "family": "nodejs_ec2",
   "requiresAttributes": [
     {
@@ -79,7 +79,7 @@
   "networkMode": null,
   "runtimePlatform": null,
   "cpu": "2048",
-  "revision": 2,
+  "revision": 4,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
