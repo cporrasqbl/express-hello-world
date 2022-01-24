@@ -19,11 +19,11 @@
       "workingDirectory": null,
       "secrets": null,
       "dockerSecurityOptions": null,
-      "memory": 500,
+      "memory": null,
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "public.ecr.aws/f9i6s7i5/nodejsapp_ec2",
+      "image": "745281650013.dkr.ecr.us-east-2.amazonaws.com/nodejsapprepo:0209fdc4c58eb12f7450fb35060781ab28f834f4",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -40,7 +40,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "NodeJs_Testing"
+      "name": "sample-app"
     }
   ],
   "placementConstraints": [],
@@ -50,14 +50,26 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/nodejs_ec2:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/nodejs_ec2:2",
   "family": "nodejs_ec2",
   "requiresAttributes": [
     {
       "targetId": null,
       "targetType": null,
       "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
       "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
     }
   ],
   "pidMode": null,
@@ -67,7 +79,7 @@
   "networkMode": null,
   "runtimePlatform": null,
   "cpu": "2048",
-  "revision": 1,
+  "revision": 2,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
