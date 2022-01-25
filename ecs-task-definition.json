@@ -5,7 +5,15 @@
     {
       "dnsSearchDomains": null,
       "environmentFiles": null,
-      "logConfiguration": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/ec2-sample-nodejs",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
       "entryPoint": null,
       "portMappings": [],
       "command": null,
@@ -19,11 +27,11 @@
       "workingDirectory": null,
       "secrets": null,
       "dockerSecurityOptions": null,
-      "memory": null,
+      "memory": 512,
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "745281650013.dkr.ecr.us-east-2.amazonaws.com/nodejsapprepo:93f02d30076220b6cf2db03cba35124b74313ec7",
+      "image": "public.ecr.aws/f9i6s7i5/nodejsapp_ec2",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -32,44 +40,56 @@
       "healthCheck": null,
       "essential": true,
       "links": null,
-      "hostname": null,
+      "hostname": "nodejs.ec2.public",
       "extraHosts": null,
       "pseudoTerminal": null,
-      "user": null,
+      "user": "caporras",
       "readonlyRootFilesystem": null,
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "sample-app"
+      "name": "ec2_sample_nodejs_public"
     }
   ],
   "placementConstraints": [],
-  "memory": "1024",
+  "memory": "1021",
   "taskRoleArn": "arn:aws:iam::745281650013:role/ecsTaskExecutionRole",
   "compatibilities": [
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/nodejs_ec2:4",
-  "family": "nodejs_ec2",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/ec2-sample-nodejs:1",
+  "family": "ec2-sample-nodejs",
   "requiresAttributes": [
     {
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
     },
     {
       "targetId": null,
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-ecr-pull"
     }
   ],
   "pidMode": null,
@@ -79,7 +99,7 @@
   "networkMode": null,
   "runtimePlatform": null,
   "cpu": "2048",
-  "revision": 4,
+  "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
