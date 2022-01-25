@@ -9,16 +9,27 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/ec2-sample-nodejs",
+          "awslogs-group": "/ecs/nodejs_app",
           "awslogs-region": "us-east-2",
           "awslogs-stream-prefix": "ecs"
         }
       },
-      "entryPoint": null,
-      "portMappings": [],
-      "command": null,
+      "entryPoint": [
+        "sh",
+        "-c"
+      ],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "command": [
+        "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+      ],
       "linuxParameters": null,
-      "cpu": 0,
+      "cpu": 256,
       "environment": [],
       "resourceRequirements": null,
       "ulimits": null,
@@ -27,11 +38,11 @@
       "workingDirectory": null,
       "secrets": null,
       "dockerSecurityOptions": null,
-      "memory": 512,
-      "memoryReservation": null,
+      "memory": null,
+      "memoryReservation": 512,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "public.ecr.aws/f9i6s7i5/nodejsapp_ec2",
+      "image": "httpd:2.4",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -39,27 +50,27 @@
       "interactive": null,
       "healthCheck": null,
       "essential": true,
-      "links": null,
-      "hostname": "nodejs.ec2.public",
+      "links": [],
+      "hostname": null,
       "extraHosts": null,
       "pseudoTerminal": null,
-      "user": "caporras",
+      "user": null,
       "readonlyRootFilesystem": null,
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "ec2_sample_nodejs_public"
+      "name": "sample-app"
     }
   ],
   "placementConstraints": [],
-  "memory": "1021",
-  "taskRoleArn": "arn:aws:iam::745281650013:role/ecsTaskExecutionRole",
+  "memory": "512",
+  "taskRoleArn": null,
   "compatibilities": [
-    "EXTERNAL",
-    "EC2"
+    "EC2",
+    "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/ec2-sample-nodejs:1",
-  "family": "ec2-sample-nodejs",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/nodejs_app:1",
+  "family": "nodejs_app",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -83,22 +94,28 @@
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
     },
     {
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
     }
   ],
   "pidMode": null,
   "requiresCompatibilities": [
-    "EC2"
+    "FARGATE"
   ],
-  "networkMode": null,
+  "networkMode": "awsvpc",
   "runtimePlatform": null,
-  "cpu": "2048",
+  "cpu": "256",
   "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
