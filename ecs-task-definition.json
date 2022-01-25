@@ -40,7 +40,7 @@
       "healthCheck": null,
       "essential": true,
       "links": null,
-      "hostname": "nodejs.ec2.public",
+      "hostname": null,
       "extraHosts": null,
       "pseudoTerminal": null,
       "user": "caporras",
@@ -55,11 +55,10 @@
   "memory": "1021",
   "taskRoleArn": "arn:aws:iam::745281650013:role/ecsTaskExecutionRole",
   "compatibilities": [
-    "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/ec2-sample-nodejs:1",
-  "family": "ec2-sample-nodejs",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-2:745281650013:task-definition/ec2-sample-nodejs-awsvpc:1",
+  "family": "ec2-sample-nodejs-awsvpc",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -90,13 +89,25 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
     }
   ],
   "pidMode": null,
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": null,
+  "networkMode": "awsvpc",
   "runtimePlatform": null,
   "cpu": "2048",
   "revision": 1,
